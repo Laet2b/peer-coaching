@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2021-07-03
+  skill: one
+  category: MyString
+  status: MyString
+  b_time: 2021-07-03 15:52:16
+  e_time: 2021-07-03 15:52:16
+
+two:
+  date: 2021-07-03
+  skill: two
+  category: MyString
+  status: MyString
+  b_time: 2021-07-03 15:52:16
+  e_time: 2021-07-03 15:52:16
