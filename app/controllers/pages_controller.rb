@@ -7,6 +7,8 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @skill = Skill.new
+    @skills = Skill.all
   end
 
   private

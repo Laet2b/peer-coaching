@@ -1,1 +1,22 @@
-<p>Hello <%= current_user.email %></p>
+<p>Salut <%= current_user.email %></p>
+
+
+<h1>Compétences</h1>
+<% if @skills.nil? %>
+  <p>Il n'y a pas encore de compétences</p>
+<% else %>
+  <% @skills.each do |skill| %>
+  <p><%= skill.name %> (<%= current_user.email %>)</p>
+  <% if skill.user == current_user %>
+   <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/skills/<%= skill.id %>">Supprimer</a>
+  <% else %>
+
+  <% end %>
+  <% end %>
+<% end %>
+
+  <%= simple_form_for(@skill, remote: true) do |f| %>
+  <%= f.input :name, label: false, placeholder: "Ajoute une compétence" %>
+  <input type="submit" data-method="post" name="commit" value="Go" class="btn btn-primary">
+  <% end %>
+
