@@ -9,6 +9,8 @@ class PagesController < ApplicationController
   def profile
     @skill = Skill.new
     @skills = Skill.all
+    @skillslists = Skillslist.all
+    @skillslist = Skillslist.new
   end
 
   private
@@ -20,6 +22,5 @@ class PagesController < ApplicationController
   def set_user
     @user = current_user
   end
-
 
 end

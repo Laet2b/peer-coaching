@@ -1,4 +1,7 @@
 <p>Salut <%= current_user.email %></p>
+ <%= link_to destroy_user_session_path, method: :delete, class:"btn log-out-btn" do %>
+  <p><i class="fas fa-power-off"></i></p>
+ <% end %>
 
 
 <h1>Compétences</h1>
@@ -6,12 +9,41 @@
   <p>Il n'y a pas encore de compétences</p>
 <% else %>
   <% @skills.each do |skill| %>
+
+    <% a = [] %>
+    <% @skillslists.each do | skillslist | %>
+      <% if skillslist.skill == skill  %>
+        <%  a << skill.name %>
+      <% end %>
+    <% end %>
+
   <p><%= skill.name %> (<%= current_user.email %>)</p>
+
   <% if skill.user == current_user %>
    <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/skills/<%= skill.id %>">Supprimer</a>
+  <% elsif a.blank? %>
+   <a rel="nofollow" data-method="create" href="/skills/<%= skill.id %>/skillslists">Ca m'intéresse !</a>
+
+    <% if !a.blank? %>
+      <% @skillslists.each do | skillslist | %>
+        <%= skillslist.user.email %>
+      <% end %>
+    <% end %>
+
   <% else %>
 
+    <% @skillslists.each do | skillslist | %>
+
+      <% if skillslist.skill == skill && skillslist.user == current_user %>
+        <a rel="nofollow" data-method="delete" href="/skills/<%= skill.id %>/skillslists/<%= skillslist.id %>">Déjà intéressé.e</a>
+      <% end %>
+
+      <%= skillslist.user.email %>
+
+    <% end %>
+
   <% end %>
+
   <% end %>
 <% end %>
 

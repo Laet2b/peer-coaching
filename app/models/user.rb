@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :bookings
   has_many :skills
+  has_many :skillslists
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_03_135320) do
+ActiveRecord::Schema.define(version: 2021_07_05_110209) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "status"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2021_07_03_135320) do
     t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
+  create_table "skillslists", force: :cascade do |t|
+    t.integer "skill_id", null: false
+    t.integer "user_id", null: false
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["skill_id"], name: "index_skillslists_on_skill_id"
+    t.index ["user_id"], name: "index_skillslists_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,4 +70,6 @@ ActiveRecord::Schema.define(version: 2021_07_03_135320) do
   add_foreign_key "bookings", "users"
   add_foreign_key "options", "skills"
   add_foreign_key "skills", "users"
+  add_foreign_key "skillslists", "skills"
+  add_foreign_key "skillslists", "users"
 end
